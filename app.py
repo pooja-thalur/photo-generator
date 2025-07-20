@@ -1,10 +1,11 @@
 # app.py
 from flask import Flask, request, jsonify
 import json
+import os
 from flask_cors import CORS
 
 app = Flask(__name__)
-port = process.env.PORT || 4000 
+port = int(os.environ.get("PORT", 5000))
 CORS(app)
 
 # Load db.json once at startup
@@ -45,4 +46,4 @@ def get_photos():
     })
 
 if __name__ == "__main__":
-    app.run(3001, debug=True)
+    app.run(host='0.0.0.0', port=port)
